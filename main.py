@@ -11,34 +11,37 @@ def start():
 
     print(art.logo)
 
-    dealers_hand.append(random.choice(cards))
+    players_hand.append(random.choice(cards))
     dealers_hand.append(random.choice(cards))
     players_hand.append(random.choice(cards))
-    players_hand.append(random.choice(cards))
+    dealers_hand.append(random.choice(cards))
 
     print(f'Your cards: {players_hand}, current score: {sum(players_hand)}')
     print(f'Dealder\'s first card: {dealers_hand[0]}\n')
 
     while end_game == False:
-        if sum(dealers_hand) < 17:
-            dealers_hand.append(random.choice(cards))
-            if sum(dealers_hand) > 21 or sum(dealers_hand) == 21:
-                end_game = True
-        
-        if sum(players_hand) > 21 or sum(players_hand) == 21:
-            end_game = True
-            
         if sum(players_hand) < 21:
             get_card = input("Type 'y' to get another card, type 'n' to pass: ")
 
             if get_card.lower() == 'y':
                 players_hand.append(random.choice(cards))
+            if sum(players_hand) > 21 or sum(players_hand) == 21:
+                end_game = True
             else:
                 while sum(dealers_hand) < 21:
                     dealers_hand.append(random.choice(cards))
 
+                    if sum(dealers_hand) > 21 or sum(dealers_hand) == 21:
+                        end_game = True
+
                     print(f'\nYour cards: {players_hand}, current score: {sum(players_hand)}')
                     print(f'Dealder\'s cards: {dealers_hand}, current score: {sum(dealers_hand)}\n')
+
+        if sum(dealers_hand) < 17 and sum(dealers_hand) < sum(players_hand):
+            dealers_hand.append(random.choice(cards))
+
+            if sum(dealers_hand) > 21 or sum(dealers_hand) == 21:
+                end_game = True
 
         print(f'\nYour cards: {players_hand}, current score: {sum(players_hand)}')
         print(f'Dealder\'s cards: {dealers_hand}, current score: {sum(dealers_hand)}\n')
