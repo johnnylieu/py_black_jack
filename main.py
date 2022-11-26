@@ -60,7 +60,7 @@ def start():
             print("you win")
         elif sum(dealers_hand) > 21:
             print("you win")
-        elif sum(dealers_hand) == sum(play_again):
+        elif sum(dealers_hand) == sum(players_hand):
             print("it's a tie")
 
     play_again = input(f"\nDo you want to play a game of Blackjack? Type 'y' or 'n': ")
