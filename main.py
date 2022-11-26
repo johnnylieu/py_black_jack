@@ -28,14 +28,13 @@ def start():
             if sum(players_hand) > 21 or sum(players_hand) == 21:
                 end_game = True
             elif get_card.lower() != 'y':
-                while sum(dealers_hand) < 21:
+                while sum(dealers_hand) < 21 and sum(dealers_hand) < sum(players_hand):
                     dealers_hand.append(random.choice(cards))
 
                     if sum(dealers_hand) > 21 or sum(dealers_hand) == 21:
                         end_game = True
-
-                    print(f'\nYour cards: {players_hand}, current score: {sum(players_hand)}')
-                    print(f'Dealder\'s cards: {dealers_hand}, current score: {sum(dealers_hand)}\n')
+                    if sum(dealers_hand) < 21 and sum(dealers_hand) > sum(players_hand):
+                        end_game = True
 
         if sum(dealers_hand) < 17 and sum(dealers_hand) < sum(players_hand):
             dealers_hand.append(random.choice(cards))
@@ -43,25 +42,28 @@ def start():
             if sum(dealers_hand) > 21 or sum(dealers_hand) == 21:
                 end_game = True
 
+            print(f'\nYour cards: {players_hand}, current score: {sum(players_hand)}')
+            print(f'Dealder\'s cards: {dealers_hand}, current score: {sum(dealers_hand)}\n')
+
         print(f'\nYour cards: {players_hand}, current score: {sum(players_hand)}')
         print(f'Dealder\'s cards: {dealers_hand}, current score: {sum(dealers_hand)}\n')
 
-    if sum(dealers_hand) == 21 or sum(players_hand) > 21:
-        print("you lose")
-    elif sum(dealers_hand) < 21 and sum(dealers_hand) > sum(players_hand):
-        print("you lose")
-    elif sum(players_hand) > 21:
-        print("you lose")
-    elif sum(players_hand) == 21:
-        print("you win")
-    elif sum(players_hand) < 21 and sum(players_hand) > sum(dealers_hand):
-        print("you win")
-    elif sum(dealers_hand) > 21:
-        print("you win")
-    else:
-        print("it's a tie")
+        if sum(dealers_hand) == 21 or sum(players_hand) > 21:
+            print("you lose")
+        elif sum(dealers_hand) < 21 and sum(dealers_hand) > sum(players_hand):
+            print("you lose")
+        elif sum(players_hand) > 21:
+            print("you lose")
+        elif sum(players_hand) == 21:
+            print("you win")
+        elif sum(players_hand) < 21 and sum(players_hand) > sum(dealers_hand):
+            print("you win")
+        elif sum(dealers_hand) > 21:
+            print("you win")
+        elif sum(dealers_hand) == sum(play_again):
+            print("it's a tie")
 
-    play_again = input("Do you want to play a game of Blackjack? Type 'y' or 'n': ")
+    play_again = input(f"\nDo you want to play a game of Blackjack? Type 'y' or 'n': ")
 
     if play_again.lower() == 'y':
         start()
