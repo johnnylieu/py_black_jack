@@ -27,7 +27,7 @@ def start():
                 players_hand.append(random.choice(cards))
             if sum(players_hand) > 21 or sum(players_hand) == 21:
                 end_game = True
-            else:
+            elif get_card.lower() != 'y':
                 while sum(dealers_hand) < 21:
                     dealers_hand.append(random.choice(cards))
 
