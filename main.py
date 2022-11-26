@@ -24,15 +24,21 @@ def start():
             dealers_hand.append(random.choice(cards))
             if sum(dealers_hand) > 21 or sum(dealers_hand) == 21:
                 end_game = True
+        
+        if sum(players_hand) > 21 or sum(players_hand) == 21:
+            end_game = True
             
         if sum(players_hand) < 21:
             get_card = input("Type 'y' to get another card, type 'n' to pass: ")
 
             if get_card.lower() == 'y':
                 players_hand.append(random.choice(cards))
+            else:
+                while sum(dealers_hand) < 21:
+                    dealers_hand.append(random.choice(cards))
 
-        if sum(players_hand) > 21 or sum(players_hand) == 21:
-            end_game = True
+                    print(f'\nYour cards: {players_hand}, current score: {sum(players_hand)}')
+                    print(f'Dealder\'s cards: {dealers_hand}, current score: {sum(dealers_hand)}\n')
 
         print(f'\nYour cards: {players_hand}, current score: {sum(players_hand)}')
         print(f'Dealder\'s cards: {dealers_hand}, current score: {sum(dealers_hand)}\n')
