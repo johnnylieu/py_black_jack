@@ -1,20 +1,38 @@
 import random
 import art
 
+def deal_cards():
+    cards = [11, 2, 3, 4, 5, 6, 7, 8, 9, 10, 10, 10, 10]
+    return random.choice(cards)
+
+def compare_score(dealers_hand, players_hand):
+    if (sum(dealers_hand) == 21) or (sum(players_hand) > 21):
+        return "YOU LOSE 💸"
+    elif (sum(dealers_hand) < 21) and (sum(dealers_hand) > sum(players_hand)):
+        return "YOU LOSE 💸"
+    elif sum(players_hand) > 21:
+        return "YOU LOSE 💸" 
+    elif sum(players_hand) == 21:
+        return "💵 YOU WIN"
+    elif (sum(players_hand) < 21) and (sum(players_hand) > sum(dealers_hand)):
+        return "💵 YOU WIN"
+    elif sum(dealers_hand) > 21:
+        return "💵 YOU WIN"
+    elif sum(dealers_hand) == sum(players_hand):
+        return "🤝🏽 IT'S A TIE"
+
 def start():
     end_game = False
-
-    cards = [11, 2, 3, 4, 5, 6, 7, 8, 9, 10, 10, 10, 10]
 
     dealers_hand = []
     players_hand = []
 
     print(art.logo)
 
-    players_hand.append(random.choice(cards))
-    dealers_hand.append(random.choice(cards))
-    players_hand.append(random.choice(cards))
-    dealers_hand.append(random.choice(cards))
+    players_hand.append(deal_cards())
+    dealers_hand.append(deal_cards())
+    players_hand.append(deal_cards())
+    dealers_hand.append(deal_cards())
 
     print(f'Your cards: {players_hand}, current score: {sum(players_hand)}')
     print(f'Dealer\'s first card: {dealers_hand[0]}\n')
@@ -32,7 +50,7 @@ def start():
             hit = input("Type 'y' to get another card, type 'n' to pass: ")
 
             if hit.lower() == 'y':
-                players_hand.append(random.choice(cards))
+                players_hand.append(deal_cards())
 
                 if sum(players_hand) >= 21:
                     end_game = True
@@ -41,25 +59,12 @@ def start():
 
             elif hit.lower != 'y':
                 while (sum(dealers_hand) < 21) and (sum(dealers_hand) <= sum(players_hand)) and (sum(players_hand) < 21) and (sum(dealers_hand) < 17):
-                    dealers_hand.append(random.choice(cards))
+                    dealers_hand.append(deal_cards())
                 end_game = True
                 print(f'\nYour cards: {players_hand}, current score: {sum(players_hand)}')
                 print(f'Dealer\'s cards: {dealers_hand}, current score: {sum(dealers_hand)}\n')
-
-        if (sum(dealers_hand) == 21) or (sum(players_hand) > 21):
-            print("YOU LOSE 💸")
-        elif (sum(dealers_hand) < 21) and (sum(dealers_hand) > sum(players_hand)):
-            print("YOU LOSE 💸")
-        elif sum(players_hand) > 21:
-            print("YOU LOSE 💸")
-        elif sum(players_hand) == 21:
-            print("💵 YOU WIN")
-        elif (sum(players_hand) < 21) and (sum(players_hand) > sum(dealers_hand)):
-            print("💵 YOU WIN")
-        elif sum(dealers_hand) > 21:
-            print("💵 YOU WIN")
-        elif sum(dealers_hand) == sum(players_hand):
-            print("🤝🏽 IT'S A TIE")
+        
+        print(compare_score(dealers_hand, players_hand))
 
     play_again = input(f"\nDo you want to play a game of Blackjack? Type 'y' or 'n': ")
 
