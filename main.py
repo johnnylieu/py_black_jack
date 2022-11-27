@@ -1,5 +1,6 @@
 import random
 import art
+from os import system, name
 
 def deal_cards():
     cards = [11, 2, 3, 4, 5, 6, 7, 8, 9, 10, 10, 10, 10]
@@ -44,6 +45,14 @@ def compare_score(players_hand, dealers_hand):
     elif sum(dealers_hand) == sum(players_hand):
         return "🤝🏽 IT'S A TIE"
 
+def clear():
+    # for windows
+    if name == 'nt':
+        _ = system('cls')
+    # for mac and linux(here, os.name is 'posix')
+    else:
+        _ = system('clear')
+
 def start():
     end_game = False
 
@@ -80,6 +89,7 @@ def start():
     play_again = input(f"\nDo you want to play a game of Blackjack? Type 'y' or 'n': ")
 
     if play_again.lower() == 'y':
+        clear()
         start()
 
 start()
