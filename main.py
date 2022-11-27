@@ -5,7 +5,19 @@ def deal_cards():
     cards = [11, 2, 3, 4, 5, 6, 7, 8, 9, 10, 10, 10, 10]
     return random.choice(cards)
 
+def calculate_score(cards):
+    if sum(cards) == 21 and len(cards)==2:
+        return 0
+    if 11 in cards and sum(cards) > 21:
+        cards.remove(11)
+        cards.append(1)
+
+def show_hands(players_hand, dealers_hand):
+    print(f'\nYour cards: {players_hand}, current score: {sum(players_hand)}')
+    print(f'Dealer\'s cards: {dealers_hand}, current score: {sum(dealers_hand)}\n')
+
 def compare_score(dealers_hand, players_hand):
+    show_hands(players_hand, dealers_hand)
     if (sum(dealers_hand) == 21) or (sum(players_hand) > 21):
         return "YOU LOSE 💸"
     elif (sum(dealers_hand) < 21) and (sum(dealers_hand) > sum(players_hand)):
@@ -38,10 +50,10 @@ def start():
     print(f'Dealer\'s first card: {dealers_hand[0]}\n')
 
     if (sum(dealers_hand) == 21) and (sum(players_hand) != 21):
-        print(f'\nYour cards: {players_hand}, current score: {sum(players_hand)}')
-        print(f'Dealer\'s cards: {dealers_hand}, current score: {sum(dealers_hand)}\n')
+        show_hands(dealers_hand, players_hand)
         print("Dealer wins 💸")
     elif (sum(players_hand) == 21) and (sum(dealers_hand) != 21):
+        show_hands(dealers_hand, players_hand)
         print("💵 YOU WIN!")
     elif (sum(players_hand) == 21) and (sum(dealers_hand) == 21):
         print("🤝🏽 IT'S A TIE")
@@ -61,8 +73,6 @@ def start():
                 while (sum(dealers_hand) < 21) and (sum(dealers_hand) <= sum(players_hand)) and (sum(players_hand) < 21) and (sum(dealers_hand) < 17):
                     dealers_hand.append(deal_cards())
                 end_game = True
-                print(f'\nYour cards: {players_hand}, current score: {sum(players_hand)}')
-                print(f'Dealer\'s cards: {dealers_hand}, current score: {sum(dealers_hand)}\n')
         
         print(compare_score(dealers_hand, players_hand))
 
