@@ -54,6 +54,8 @@ def clear():
         _ = system('clear')
 
 def start():
+    clear()
+    
     end_game = False
 
     dealers_hand = []
@@ -89,7 +91,6 @@ def start():
     play_again = input(f"\nDo you want to play a game of Blackjack? Type 'y' or 'n': ")
 
     if play_again.lower() == 'y':
-        clear()
         start()
 
 start()
