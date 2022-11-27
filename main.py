@@ -85,7 +85,7 @@ def start():
                 dealers_hand.append(deal_cards())
             end_game = True
     
-    print(show_hands(players_hand, dealers_hand))
+    print(show_hands(players_hand=players_hand, dealers_hand=dealers_hand))
     print(compare_score(players_hand, dealers_hand))
 
     play_again = input(f"\nDo you want to play a game of Blackjack? Type 'y' or 'n': ")
