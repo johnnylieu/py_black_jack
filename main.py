@@ -36,26 +36,26 @@ def start():
                     end_game = True
 
             elif hit.lower != 'y':
-                while (sum(dealers_hand) < 21) and (sum(dealers_hand) < sum(players_hand)) and (sum(players_hand) < 21):
+                while (sum(dealers_hand) < 21) and (sum(dealers_hand) <= sum(players_hand)) and (sum(players_hand) < 21) and (sum(dealers_hand) < 17):
                     dealers_hand.append(random.choice(cards))
                 print(f'\nYour cards: {players_hand}, current score: {sum(players_hand)}')
                 print(f'Dealer\'s cards: {dealers_hand}, current score: {sum(dealers_hand)}\n')
                 end_game = True
 
         if (sum(dealers_hand) == 21) or (sum(players_hand) > 21):
-            print("you lose")
+            print("YOU LOSE 💸")
         elif (sum(dealers_hand) < 21) and (sum(dealers_hand) > sum(players_hand)):
-            print("you lose")
+            print("YOU LOSE 💸")
         elif sum(players_hand) > 21:
-            print("you lose")
+            print("YOU LOSE 💸")
         elif sum(players_hand) == 21:
-            print("you win")
+            print("💵 YOU WIN")
         elif (sum(players_hand) < 21) and (sum(players_hand) > sum(dealers_hand)):
-            print("you win")
+            print("💵 YOU WIN")
         elif sum(dealers_hand) > 21:
-            print("you win")
+            print("💵 YOU WIN")
         elif sum(dealers_hand) == sum(players_hand):
-            print("it's a tie")
+            print("🤝🏽 IT'S A TIE")
 
     play_again = input(f"\nDo you want to play a game of Blackjack? Type 'y' or 'n': ")
 
