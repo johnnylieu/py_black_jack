@@ -43,10 +43,9 @@ def start():
 
     print(art.logo)
 
-    players_hand.append(deal_cards())
-    dealers_hand.append(deal_cards())
-    players_hand.append(deal_cards())
-    dealers_hand.append(deal_cards())
+    for i in range(2):
+        players_hand.append(deal_cards())
+        dealers_hand.append(deal_cards())
 
     print(show_partial_hand(players_hand, dealers_hand))
 
