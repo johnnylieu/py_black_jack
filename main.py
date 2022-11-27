@@ -20,9 +20,9 @@ def start():
     print(f'Dealer\'s first card: {dealers_hand[0]}\n')
 
     if sum(dealers_hand) == 21:
-        print("Dealer wins.")
+        print("Dealer wins 💸")
     elif sum(players_hand) == 21:
-        print("You win!")
+        print("💵 YOU WIN!")
     else:
         while end_game == False:
             hit = input("Type 'y' to get another card, type 'n' to pass: ")
