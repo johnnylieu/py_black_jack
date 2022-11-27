@@ -46,9 +46,6 @@ def start():
     players_hand.append(deal_cards())
     dealers_hand.append(deal_cards())
 
-    print(f'Your cards: {players_hand}, current score: {sum(players_hand)}')
-    print(f'Dealer\'s first card: {dealers_hand[0]}\n')
-
     if (sum(dealers_hand) == 21) and (sum(players_hand) != 21):
         show_hands(dealers_hand, players_hand)
         print("Dealer wins 💸")
