@@ -30,16 +30,17 @@ def start():
             if hit.lower() == 'y':
                 players_hand.append(random.choice(cards))
                 print(f'\nYour cards: {players_hand}, current score: {sum(players_hand)}')
-                print(f'Dealer\'s cards: {dealers_hand}, current score: {sum(dealers_hand)}\n')
+                print(f'Dealer\'s first card: {dealers_hand[0]}\n')
 
-                if (sum(dealers_hand) >= 21) or (sum(players_hand) >= 21):
+                if sum(players_hand) >= 21:
                     end_game = True
-            if hit.lower() != 'y':
+
+            elif hit.lower != 'y':
                 while (sum(dealers_hand) < 21) and (sum(dealers_hand) < sum(players_hand)) and (sum(players_hand) < 21):
                     dealers_hand.append(random.choice(cards))
-                    end_game = True
-                    print(f'\nYour cards: {players_hand}, current score: {sum(players_hand)}')
-                    print(f'Dealer\'s cards: {dealers_hand}, current score: {sum(dealers_hand)}\n')
+                print(f'\nYour cards: {players_hand}, current score: {sum(players_hand)}')
+                print(f'Dealer\'s cards: {dealers_hand}, current score: {sum(dealers_hand)}\n')
+                end_game = True
 
         if (sum(dealers_hand) == 21) or (sum(players_hand) > 21):
             print("you lose")
