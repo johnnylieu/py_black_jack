@@ -12,13 +12,14 @@ def calculate_score(cards):
         cards.remove(11)
         cards.append(1)
 
+def show_partial_hand(players_hand, dealers_hand):
+    return f'\nYour cards: {players_hand}, current score: {sum(players_hand)}\nDealer\'s first card: {dealers_hand[0]}\n'
+
 def show_hands(players_hand, dealers_hand):
-    print(f'\nYour cards: {players_hand}, current score: {sum(players_hand)}')
-    print(f'Dealer\'s cards: {dealers_hand}, current score: {sum(dealers_hand)}\n')
+    return f'\nYour cards: {players_hand}, current score: {sum(players_hand)}\nDealer\'s cards: {dealers_hand}, current score: {sum(dealers_hand)}\n'
 
 def compare_score(dealers_hand, players_hand):
-    print(f'\nYour cards: {players_hand}, current score: {sum(players_hand)}')
-    print(f'Dealer\'s first card: {dealers_hand[0]}\n')
+    print(show_hands(players_hand, dealers_hand))
     if (sum(dealers_hand) == 21) or (sum(players_hand) > 21):
         return "YOU LOSE 💸"
     elif (sum(dealers_hand) < 21) and (sum(dealers_hand) > sum(players_hand)):
@@ -47,11 +48,13 @@ def start():
     players_hand.append(deal_cards())
     dealers_hand.append(deal_cards())
 
+    print(show_partial_hand(players_hand, dealers_hand))
+
     if (sum(dealers_hand) == 21) and (sum(players_hand) != 21):
-        show_hands(dealers_hand, players_hand)
+        print(show_hands(dealers_hand, players_hand))
         print("Dealer wins 💸")
     elif (sum(players_hand) == 21) and (sum(dealers_hand) != 21):
-        show_hands(dealers_hand, players_hand)
+        print(show_hands(dealers_hand, players_hand))
         print("💵 YOU WIN!")
     elif (sum(players_hand) == 21) and (sum(dealers_hand) == 21):
         print("🤝🏽 IT'S A TIE")
@@ -64,8 +67,7 @@ def start():
 
                 if sum(players_hand) >= 21:
                     end_game = True
-                print(f'\nYour cards: {players_hand}, current score: {sum(players_hand)}')
-                print(f'Dealer\'s first card: {dealers_hand[0]}\n')
+                print(show_partial_hand(players_hand, dealers_hand))
 
             elif hit.lower != 'y':
                 while (sum(dealers_hand) < 21) and (sum(dealers_hand) <= sum(players_hand)) and (sum(players_hand) < 21) and (sum(dealers_hand) < 17):
