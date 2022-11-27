@@ -37,7 +37,7 @@ def start():
                 if sum(players_hand) >= 21:
                     end_game = True
                 print(f'\nYour cards: {players_hand}, current score: {sum(players_hand)}')
-                print(f'Dealer\'s cards: {dealers_hand}, current score: {sum(dealers_hand)}\n')
+                print(f'Dealer\'s first card: {dealers_hand[0]}\n')
 
             elif hit.lower != 'y':
                 while (sum(dealers_hand) < 21) and (sum(dealers_hand) <= sum(players_hand)) and (sum(players_hand) < 21) and (sum(dealers_hand) < 17):
