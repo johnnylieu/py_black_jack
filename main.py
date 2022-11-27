@@ -17,7 +17,8 @@ def show_hands(players_hand, dealers_hand):
     print(f'Dealer\'s cards: {dealers_hand}, current score: {sum(dealers_hand)}\n')
 
 def compare_score(dealers_hand, players_hand):
-    show_hands(players_hand, dealers_hand)
+    print(f'\nYour cards: {players_hand}, current score: {sum(players_hand)}')
+    print(f'Dealer\'s first card: {dealers_hand[0]}\n')
     if (sum(dealers_hand) == 21) or (sum(players_hand) > 21):
         return "YOU LOSE 💸"
     elif (sum(dealers_hand) < 21) and (sum(dealers_hand) > sum(players_hand)):
