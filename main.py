@@ -19,12 +19,14 @@ def start():
     print(f'Your cards: {players_hand}, current score: {sum(players_hand)}')
     print(f'Dealer\'s first card: {dealers_hand[0]}\n')
 
-    if sum(dealers_hand) == 21:
+    if (sum(dealers_hand) == 21) and (sum(players_hand) != 21):
         print(f'\nYour cards: {players_hand}, current score: {sum(players_hand)}')
         print(f'Dealer\'s cards: {dealers_hand}, current score: {sum(dealers_hand)}\n')
         print("Dealer wins 💸")
-    elif sum(players_hand) == 21:
+    elif (sum(players_hand) == 21) and (sum(dealers_hand) != 21):
         print("💵 YOU WIN!")
+    elif (sum(players_hand) == 21) and (sum(dealers_hand) == 21):
+        print("🤝🏽 IT'S A TIE")
     else:
         while end_game == False:
             hit = input("Type 'y' to get another card, type 'n' to pass: ")
