@@ -20,6 +20,7 @@ def show_hands(players_hand, dealers_hand):
     return f'\n🃏 Your cards: {players_hand}, current score: {sum(players_hand)}\n🎴 Dealer\'s cards: {dealers_hand}, current score: {sum(dealers_hand)}\n'
 
 def initial_comparison(players_hand, dealers_hand):
+    # can't have a return in here because it will end game
     if (sum(dealers_hand) == 21) and (sum(players_hand) != 21):
         print(show_hands(dealers_hand, players_hand))
         print("Dealer wins 💸")
@@ -55,7 +56,6 @@ def clear():
 
 def start():
     clear()
-    
     end_game = False
 
     dealers_hand = []
